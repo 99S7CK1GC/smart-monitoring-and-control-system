@@ -1,5 +1,5 @@
 #include "hal_uart.h"
-
+#include "hal_gpio.h"
 
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
@@ -35,7 +35,7 @@ void print_text(const char *str)
 {
   while(*str)
   {
-    print_text(*str++);
+    print_char(*str++);
   }
 }
 char read_char(void)

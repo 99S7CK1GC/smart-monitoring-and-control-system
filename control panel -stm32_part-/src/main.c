@@ -20,11 +20,11 @@ int main(void)
   buttons_setup();
   led_setup();
   uart_init(9600);
-  uart_send_string("UART READY \n");
+  print_text("UART READY \n");
   
   while(1)
   {
-    if (button_read(BUTTON1) )
+    if (button_read(BUTTON1_PIN) )
     {
       print_text("code running");
       led_on();

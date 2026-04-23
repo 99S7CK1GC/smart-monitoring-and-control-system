@@ -1,7 +1,7 @@
 #pragma once
 
-#include <libopencm3/esp32/gpio.h>
-#include <libopencm3/esp32/rcc.h>
+#include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/rcc.h>
 
 #include <stdbool.h> 
 #include <stdint.h>
@@ -31,34 +31,14 @@
 // Buttons + LED Defintion 
 #define BUTTON1_PIN    GPIO12
 #define BUTTON2_PIN    GPIO11
-#define BUTTON_PORT    GPIOA 
+#define BUTTONS_PORT    GPIOA 
 #define LED_PIN        GPIO15
 #define LED_PORT       GPIOA
 
 
-void led_setup(void)
-{
-
-}
-void buttons_setup(void)
-{
-
-}
-
-void delay_ms(uint32_t count)
-{
-
-}
-
-bool button_read(uint16_t pin)
-{
-
-}
-void led_on()
-{
-
-}
-void led_off()
-{
-
-}
+void led_setup(void);
+void buttons_setup(void);
+void delay_ms(uint32_t count);
+bool button_read(uint16_t pin);
+void led_on();
+void led_off();

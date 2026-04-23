@@ -7,22 +7,22 @@
 void  led_setup()
 {
   rcc_periph_clock_enable(RCC_GPIOA);
-  gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, LED);
+  gpio_mode_setup(LED_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, LED_PIN);
 }
 
 void buttons_setup()
 {
   rcc_periph_clock_enable(RCC_GPIOA);
-  gpio_mode_setup(GPIOA, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, BUTTON1 | BUTTON2);
+  gpio_mode_setup(BUTTONS_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, BUTTON1_PIN | BUTTON2_PIN);
 }
 
 bool button_read(uint16_t pin)
 {
-  if(gpio_get(BUTTON_PORT, pin ) == 0)
+  if(gpio_get(BUTTONS_PORT, pin ) == 0)
   {
     delay_ms(20);
   
-  return (gpio_get(BUTTON_PORT, pin) == 0);
+  return (gpio_get(BUTTONS_PORT, pin) == 0);
   }
   return false;
 }
