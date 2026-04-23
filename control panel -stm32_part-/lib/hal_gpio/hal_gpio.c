@@ -1,23 +1,49 @@
 #include "hal_gpio.h"
 
-// UART Definiton 
-#define RX2        GPIO3
-#define TX2        GPIO2
+#include <stdint.h>
+#include <stdbool.h>
 
-// MPU6050 + BME280 Definition
-#define SDA1       GPIO7
-#define SCL1       GPIO6
 
-// Screen Definition
-#define CLOCK      GPIO5 
-#define MOSI       GPIO7  
-#define RESET      GPIO14
-#define DC         GPIO1
-#define CS         GPIO4
+void  led_setup()
+{
+  rcc_periph_clock_enable(RCC_GPIOA);
+  gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, LED);
+}
 
-// Buttons + LED Defintion 
-#define BUTTON1    GPIO12
-#define BUTTON2    GPIO11
-#define LED        GPIO15
+void buttons_setup()
+{
+  rcc_periph_clock_enable(RCC_GPIOA);
+  gpio_mode_setup(GPIOA, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, BUTTON1 | BUTTON2);
+}
 
+bool button_read(uint16_t pin)
+{
+  if(gpio_get(BUTTON_PORT, pin ) == 0)
+  {
+    delay_ms(20);
+  
+  return (gpio_get(BUTTON_PORT, PIN) == 0);
+  }
+  return false;
+}
+void led_on(void)
+{
+  gpio_set(LED_PORT, LED_PIN);
+}
+void led_off(void)
+{
+  gpio_clear(LED_PORT, LED_PIN);
+}
+
+//since i configured the stm32 at 96mhz and we want to make the delay
+//in ms then we need to devide 96M over 1K and since the loop takes around
+//4 cycles then we divide again over 4 which equals to almost 24,000
+//THE DELAY IS NOT ACCURATE
+void delay_ms(uint32_t count)
+{
+  for(uint32_t i = 0 ; i < ( count * 24000 ); i++)
+  {
+    __asm__("nop");
+  }
+}
 

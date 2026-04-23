@@ -6,11 +6,11 @@
 void uart_init(uint32_t baudrate);
 
 // Send one byte
-void uart_send_char(char c);
+void print_char(char c);
 
 // Send one string
-void uart_send_string(const char *str);
+void print_text(const char *str);
 
 // Receive one byte
-char uart_read_char(void);
+char read_char(void);
 
