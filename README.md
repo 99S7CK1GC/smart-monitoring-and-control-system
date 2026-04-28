@@ -40,8 +40,8 @@ GPIO  → PB0 btn1, PB1 btn2, PC13 LED
 **Progress:**
 - [x] HAL GPIO
 - [x] HAL UART
-- [ ] HAL I2C ← here now
-- [ ] MPU-6050 driver
+- [x] HAL I2C 
+- [ ] MPU-6050 driver ← here now
 - [ ] BME280 driver
 - [ ] HAL SPI + ST7789 driver
 - [ ] State machine + UI
